@@ -6,7 +6,7 @@ import { Card, CardActionArea, CardContent, Divider, Typography } from '@mui/mat
 const Project = ({ project }) => {
     const { name, description, tech, link, coverImage } = project;
     return (
-        <Card sx={{ width: '48%' }}>
+        <Card sx={{ width: '30%' }}>
             <CardActionArea>
                 <Image data={coverImage.responsiveImage} alt={coverImage.alt} />
                 <CardContent>
