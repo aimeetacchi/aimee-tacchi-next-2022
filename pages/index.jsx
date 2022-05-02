@@ -1,14 +1,27 @@
 import Head from 'next/head';
-import { gql } from 'graphql-request';
+import Link from 'next/link';
 
-import graphQLClient from '../graphql-client';
+import styled from 'styled-components'
+import Particles from "react-tsparticles";
+import { loadFull } from "tsparticles";
 
-import Layout from '../src/components/Layout';
-import { Box } from '@mui/material';
-import Project from '../src/components/Project';
+import { Box, Typography, Button } from '@mui/material';
+import theme from '../src/theme';
 
-export default function Home({ allProjects }) {
-  console.log('All Projects', allProjects);
+
+export default function Home() {
+  const particlesInit = async (main) => {
+    console.log(main);
+
+    // you can initialize the tsParticles instance (main) here, adding custom shapes or presets
+    // this loads the tsparticles package bundle, it's the easiest method for getting everything ready
+    // starting from v2 you can add only the features you need reducing the bundle size
+    await loadFull(main);
+  };
+
+  const particlesLoaded = (container) => {
+    console.log(container);
+  };
   return (
     <>
       <Head>
@@ -17,52 +30,152 @@ export default function Home({ allProjects }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Layout>
-        <Box sx={{ display: 'flex', gap: 3, flexWrap: 'wrap', marginLeft: '89px' }}>
-          {allProjects.map(project => (
-            <Project key={project.id} project={project} />
-          ))}
-        </Box>
-      </Layout>
+      <HeroContainer>
+      <HeroTextBox sx={{ position: 'relative', zIndex: 5 }}>
+          <Typography mt={2} variant="h1"><span>Hello I&rsquo;m Aimee, a Web Developer</span></Typography>
+          <Typography mt={2} variant="h2">Building Responsive Websites and Applications</Typography>
+          <Box mt={2}>
+            <Link passHref href="/dashboard"><Button color="secondary" size="large" variant="contained">Enter</Button></Link>
+          </Box>
+        </HeroTextBox>
+      </HeroContainer>
+      <Particles
+      style={particlesStyles}
+      id="tsparticles"
+      init={particlesInit}
+      loaded={particlesLoaded}
+      options={particlesOptions}
+    />
     </>
   );
 }
 
-const query = gql`
-    query {
-        allProjects {
-            id
-            name
-            slug
-            description
-            excerpt
-            link
-            tech
-            recentWork
-            coverImage {
-                id
-                responsiveImage(imgixParams: { fit: crop, w: 300, h: 300, auto: format }) {
-                    srcSet
-                    webpSrcSet
-                    sizes
-                    src
-                    width
-                    height
-                    aspectRatio
-                    alt
-                    title
-                    base64
-                }
-            }
-        }
+const particlesOptions = {
+  background: {
+    color: {
+      value: theme.palette.primary.main,
+    },
+  },
+  fpsLimit: 120,
+  interactivity: {
+    events: {
+      onClick: {
+        enable: true,
+        mode: "push",
+      },
+      onHover: {
+        enable: true,
+        mode: "repulse",
+      },
+      resize: true,
+    },
+    modes: {
+      push: {
+        quantity: 4,
+      },
+      repulse: {
+        distance: 200,
+        duration: 0.4,
+      },
+    },
+  },
+  particles: {
+    color: {
+      value: "#ffffff",
+    },
+    links: {
+      color: "#ffffff",
+      distance: 150,
+      enable: true,
+      opacity: 0.5,
+      width: 1,
+    },
+    collisions: {
+      enable: true,
+    },
+    move: {
+      direction: "none",
+      enable: true,
+      outModes: {
+        default: "bounce",
+      },
+      random: false,
+      speed: 1,
+      straight: false,
+    },
+    number: {
+      density: {
+        enable: true,
+        area: 800,
+      },
+      value: 80,
+    },
+    opacity: {
+      value: 0.5,
+    },
+    shape: {
+      type: "circle",
+    },
+    size: {
+      value: { min: 1, max: 5 },
+    },
+  },
+  detectRetina: true,
+
+
+}
+
+
+// Hero Container
+const HeroContainer = styled(Box)`
+    height: 92vh;
+
+  @media screen and (min-width: 1024px) {
+    height: 90vh;
+  }
+`
+// Hero Box ===
+const HeroTextBox = styled(Box)`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  height: 100%;
+  margin: 0 auto;
+  text-align: center;
+  width: 100%;
+  z-index: 5;
+
+  @media (min-width: 840px) {
+    padding: 4em 2em;
+    width: 50%;
+  }
+
+  h1 {
+    font-size: 60px;
+    font-weight: 700;
+    color: theme.palette.primary.contrastText;
+    
+    span {
+      background: -webkit-linear-gradient(-70deg,#db469f,#2188ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      -webkit-box-decoration-break: clone;
     }
-`;
+  }
+  h2 {
+    font-size: 40px;
+    font-weight: 700;
+    color: #f9f7f7;
+  }
+`
 
-export async function getServerSideProps() {
 
-  const allProjects = await graphQLClient.request(query);
 
-  return {
-    props: allProjects,
-  };
+let particlesStyles = {
+  position: 'absolute',
+  top: 0,
+  left: 0,
 }

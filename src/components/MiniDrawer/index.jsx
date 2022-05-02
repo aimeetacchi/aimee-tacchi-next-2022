@@ -18,6 +18,8 @@ import {
     Avatar,
     Tooltip,
     Button,
+    MenuItem,
+    Menu,
 } from '@mui/material';
 
 import MenuIcon from '@mui/icons-material/Menu';
@@ -102,6 +104,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: prop => prop !== 'open' })
 const MiniDrawer = () => {
     const theme = useTheme();
     const [open, setOpen] = useState(false);
+    const [anchorElUser, setAnchorElUser] = useState(null);
 
     const handleDrawerOpen = () => {
         setOpen(true);
@@ -110,6 +113,15 @@ const MiniDrawer = () => {
     const handleDrawerClose = () => {
         setOpen(false);
     };
+
+    const handleOpenUserMenu = (event) => {
+      setAnchorElUser(event.currentTarget);
+    };
+  
+    const handleCloseUserMenu = () => {
+      setAnchorElUser(null);
+    };
+  
 
     return (
         <Box sx={{ display: 'flex' }}>
@@ -132,7 +144,34 @@ const MiniDrawer = () => {
                     <Typography sx={{ marginLeft: 'auto' }} variant="h6" component="h1">
                         Aimee Tacchi
                     </Typography>
-                    <Avatar sx={{ marginLeft: '10px' }} alt="Aimee Tacchi" src="/static/images/avatar/1.jpg" />
+                    <Tooltip title="Open settings" arrow>
+                      <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                        <Avatar sx={{ marginLeft: '10px' }} alt="Aimee Tacchi" src="/static/images/avatar/2.jpg" />
+                      </IconButton>
+                    </Tooltip>
+                    <Menu
+                      sx={{ mt: '45px' }}
+                      id="menu-appbar"
+                      anchorEl={anchorElUser}
+                      anchorOrigin={{
+                        vertical: 'top',
+                        horizontal: 'right',
+                      }}
+                      keepMounted
+                      transformOrigin={{
+                        vertical: 'top',
+                        horizontal: 'right',
+                      }}
+                      open={Boolean(anchorElUser)}
+                      onClose={handleCloseUserMenu}
+                    >
+                      {['Settings', 'About', 'Home'].map((setting) => (
+                        <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                          <Typography textAlign="center">{setting}</Typography>
+                        </MenuItem>
+                      ))}
+                    </Menu>
+                    {/* <Avatar sx={{ marginLeft: '10px' }} alt="Aimee Tacchi" src="/static/images/avatar/1.jpg" /> */}
                 </Toolbar>
             </AppBar>
             <Drawer variant="permanent" open={open}>
@@ -147,9 +186,9 @@ const MiniDrawer = () => {
                         <Link key={text} href={index === 0 ? '/' : `/${text}`.toLowerCase()}>
                             <a>
                                 {open ? (
-                                    <MiniDrawerListItem open={open} text={text} index={index} />
+                                    <MiniDrawerListItem open={open} text={text} />
                                 ) : (
-                                    <MiniDrawerListItemWithToolTip open={open} text={text} index={index} />
+                                    <MiniDrawerListItemWithToolTip open={open} text={text} />
                                 )}
                             </a>
                         </Link>
@@ -158,26 +197,15 @@ const MiniDrawer = () => {
                 <Divider />
                 <List>
                     {['Gallery', 'Blog'].map((text, index) => (
-                        <Tooltip key={text} title={text} placement="right" arrow>
-                            <ListItemButton
-                                sx={{
-                                    minHeight: 48,
-                                    justifyContent: open ? 'initial' : 'center',
-                                    px: 2.5,
-                                }}
-                            >
-                                <ListItemIcon
-                                    sx={{
-                                        minWidth: 0,
-                                        mr: open ? 3 : 'auto',
-                                        justifyContent: 'center',
-                                    }}
-                                >
-                                    {index === 0 ? <PhotoLibraryIcon /> : <ArticleIcon />}
-                                </ListItemIcon>
-                                <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
-                            </ListItemButton>
-                        </Tooltip>
+                        <Link key={text} href={`/${text}`.toLowerCase()}>
+                            <a>
+                                {open ? (
+                                    <MiniDrawerListItem open={open} text={text} />
+                                ) : (
+                                    <MiniDrawerListItemWithToolTip open={open} text={text} />
+                                )}
+                            </a>
+                        </Link>
                     ))}
 
                     {open && (
@@ -196,9 +224,8 @@ const MiniDrawer = () => {
 
 export default MiniDrawer;
 
-const MiniDrawerListItemWithToolTip = ({ text, index, open }) => {
+const MiniDrawerListItem = ({ text, open }) => {
     return (
-        <Tooltip title={text} placement="right" arrow>
         <ListItemButton
             sx={{
                 minHeight: 48,
@@ -213,41 +240,46 @@ const MiniDrawerListItemWithToolTip = ({ text, index, open }) => {
                     justifyContent: 'center',
                 }}
             >
-                {index === 0 && <DashboardIcon />}
-                {index === 1 && <PersonIcon />}
-                {index === 2 && <CodeIcon />}
-                {index === 3 && <FolderIcon />}
-                {index === 4 && <MailIcon />}
+                {text === 'Dashboard' && <DashboardIcon />}
+                {text === 'About' && <PersonIcon />}
+                {text === 'Skills' && <CodeIcon />}
+                {text === 'Projects' && <FolderIcon />}
+                {text === 'Contact' && <MailIcon />}
+                {text === 'Blog' && <ArticleIcon />}
+                {text === 'Gallery' && <PhotoLibraryIcon />}
             </ListItemIcon>
             <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
         </ListItemButton>
-        </Tooltip>
     );
 };
 
-const MiniDrawerListItem = ({ text, index, open }) => {
-  return (
-      <ListItemButton
-          sx={{
-              minHeight: 48,
-              justifyContent: open ? 'initial' : 'center',
-              px: 2.5,
-          }}
-      >
-          <ListItemIcon
-              sx={{
-                  minWidth: 0,
-                  mr: open ? 3 : 'auto',
-                  justifyContent: 'center',
-              }}
-          >
-              {index === 0 && <DashboardIcon />}
-              {index === 1 && <PersonIcon />}
-              {index === 2 && <CodeIcon />}
-              {index === 3 && <FolderIcon />}
-              {index === 4 && <MailIcon />}
-          </ListItemIcon>
-          <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
-      </ListItemButton>
-  );
+const MiniDrawerListItemWithToolTip = ({ text, open }) => {
+    return (
+        <Tooltip title={text} placement="right" arrow>
+            <ListItemButton
+                sx={{
+                    minHeight: 48,
+                    justifyContent: open ? 'initial' : 'center',
+                    px: 2.5,
+                }}
+            >
+                <ListItemIcon
+                    sx={{
+                        minWidth: 0,
+                        mr: open ? 3 : 'auto',
+                        justifyContent: 'center',
+                    }}
+                >
+                    {text === 'Dashboard' && <DashboardIcon />}
+                    {text === 'About' && <PersonIcon />}
+                    {text === 'Skills' && <CodeIcon />}
+                    {text === 'Projects' && <FolderIcon />}
+                    {text === 'Contact' && <MailIcon />}
+                    {text === 'Blog' && <ArticleIcon />}
+                    {text === 'Gallery' && <PhotoLibraryIcon />}
+                </ListItemIcon>
+                <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
+            </ListItemButton>
+        </Tooltip>
+    );
 };

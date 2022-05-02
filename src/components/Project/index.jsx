@@ -13,11 +13,11 @@ const Project = ({ project }) => {
                     <Typography  gutterBottom variant="h3" component="div">
                         {name}
                     </Typography>
-                    <Typography variant="body2" color="text.primary">
+                    <Typography variant="body1" color="text.primary">
                         Description: {description}
                     </Typography>
                     <Divider/>
-                    <Typography variant="body2" color="text.primary">
+                    <Typography variant="body1" color="text.primary">
                         Tech: {tech}
                     </Typography>
                     <a href={link}>View Project</a>
