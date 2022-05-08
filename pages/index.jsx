@@ -4,8 +4,8 @@ import Link from 'next/link';
 import styled from 'styled-components'
 import Particles from "react-tsparticles";
 import { loadFull } from "tsparticles";
-
-import { Box, Typography, Button } from '@mui/material';
+import HomeImage from '../src/components/HomeImage'
+import { Box, Typography, Button, Grid } from '@mui/material';
 import theme from '../src/theme';
 
 
@@ -30,101 +30,266 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <HeroContainer>
-      <HeroTextBox sx={{ position: 'relative', zIndex: 5 }}>
-          <Typography mt={2} variant="h1"><span>Hello I&rsquo;m Aimee, a Web Developer</span></Typography>
-          <Typography mt={2} variant="h2">Building Responsive Websites and Applications</Typography>
-          <Box mt={2}>
-            <Link passHref href="/dashboard"><Button color="secondary" size="large" variant="contained">Enter</Button></Link>
-          </Box>
-        </HeroTextBox>
-      </HeroContainer>
+      <Grid sx={{ maxWidth: '1200px', margin: '0 auto' }}  container spacing={0}>
+        <Grid item sm={12} md={7}>
+          <HomePageBoxLeft>
+          <HeroContainer>
+            <HeroTextBox sx={{ position: 'relative', zIndex: 5 }}>
+              <Typography mt={2} variant="h1"><span>Frontend Developer</span></Typography>
+              <Typography mt={2} variant="h2">Hello I&rsquo;m Aimee, I build responsive websites &amp; applications</Typography>
+              <Box mt={2}>
+                <Link passHref href="/dashboard"><Button color="secondary" size="large" variant="contained">Enter</Button></Link>
+              </Box>
+            </HeroTextBox>
+          </HeroContainer>
+          </HomePageBoxLeft>
+         
+        </Grid>
+        <Grid item sm={12} md={5}>
+          <HomePageBox>
+            <HomeImage/>
+          </HomePageBox>
+        </Grid>
+
+      </Grid>
+
       <Particles
-      style={particlesStyles}
-      id="tsparticles"
-      init={particlesInit}
-      loaded={particlesLoaded}
-      options={particlesOptions}
-    />
+        // style={}
+        id="tsparticles"
+        init={particlesInit}
+        loaded={particlesLoaded}
+        options={particlesOptions}
+      />
     </>
   );
 }
 
 const particlesOptions = {
-  background: {
-    color: {
-      value: theme.palette.primary.main,
-    },
-  },
-  fpsLimit: 120,
-  interactivity: {
-    events: {
-      onClick: {
-        enable: true,
-        mode: "push",
-      },
-      onHover: {
-        enable: true,
-        mode: "repulse",
-      },
-      resize: true,
-    },
-    modes: {
-      push: {
-        quantity: 4,
-      },
-      repulse: {
-        distance: 200,
-        duration: 0.4,
-      },
-    },
-  },
-  particles: {
-    color: {
-      value: "#ffffff",
-    },
-    links: {
-      color: "#ffffff",
-      distance: 150,
+  // background: {
+  //   color: {
+  //     value: theme.palette.primary.main,
+  //   },
+  // },
+  // fpsLimit: 120,
+  // interactivity: {
+  //   events: {
+  //     onClick: {
+  //       enable: true,
+  //       mode: "push",
+  //     },
+  //     onHover: {
+  //       enable: true,
+  //       mode: "repulse",
+  //     },
+  //     resize: true,
+  //   },
+  //   modes: {
+  //     push: {
+  //       quantity: 4,
+  //     },
+  //     repulse: {
+  //       distance: 200,
+  //       duration: 0.4,
+  //     },
+  //   },
+  // },
+  // particles: {
+  //   color: {
+  //     value: "#ffffff",
+  //   },
+  //   links: {
+  //     color: "#ffffff",
+  //     distance: 150,
+  //     enable: true,
+  //     opacity: 0.5,
+  //     width: 1,
+  //   },
+  //   collisions: {
+  //     enable: true,
+  //   },
+  //   move: {
+  //     direction: "none",
+  //     enable: true,
+  //     outModes: {
+  //       default: "bounce",
+  //     },
+  //     random: false,
+  //     speed: 1,
+  //     straight: false,
+  //   },
+  //   number: {
+  //     density: {
+  //       enable: true,
+  //       area: 800,
+  //     },
+  //     value: 80,
+  //   },
+  //   opacity: {
+  //     value: 0.5,
+  //   },
+  //   shape: {
+  //     type: "circle",
+  //   },
+  //   size: {
+  //     value: { min: 1, max: 5 },
+  //   },
+  // },
+  // detectRetina: true,
+  
+    fullScreen: {
       enable: true,
-      opacity: 0.5,
-      width: 1,
+      zIndex: 0
     },
-    collisions: {
-      enable: true,
-    },
-    move: {
-      direction: "none",
-      enable: true,
-      outModes: {
-        default: "bounce",
+    particles: {
+      number: {
+        value: 200,
+        limit: 300,
+        density: {
+          enable: true,
+          value_area: 800
+        }
       },
-      random: false,
-      speed: 1,
-      straight: false,
-    },
-    number: {
-      density: {
+      color: {
+        value: "#ffffff"
+      },
+      shape: {
+        type: "circle",
+        stroke: {
+          width: 0,
+          color: "#000000"
+        },
+        polygon: {
+          nb_sides: 5
+        },
+        image: {
+          src: "images/github.svg",
+          width: 100,
+          height: 100
+        }
+      },
+      opacity: {
+        value: 0.5,
+        random: true,
+        anim: {
+          enable: true,
+          speed: 1,
+          opacity_min: 0.5,
+          sync: false
+        }
+      },
+      size: {
+        value: 30,
+        random: true,
+        anim: {
+          enable: true,
+          speed: 10,
+          size_min: 10,
+          sync: false
+        }
+      },
+      line_linked: {
         enable: true,
-        area: 800,
+        distance: 100,
+        color: "#ffffff",
+        opacity: 1,
+        width: 1
       },
-      value: 80,
+      move: {
+        enable: true,
+        speed: 3,
+        direction: "none",
+        random: false,
+        straight: false,
+        out_mode: "out",
+        bounce: false,
+        attract: {
+          enable: false,
+          rotateX: 600,
+          rotateY: 1200
+        }
+      }
     },
-    opacity: {
-      value: 0.5,
+    interactivity: {
+      detect_on: "canvas",
+      events: {
+        onHover: {
+          enable: true,
+          mode: "bubble",
+          parallax: {
+            enable: false,
+            force: 60,
+            smooth: 10
+          }
+        },
+        onClick: {
+          enable: true,
+          mode: "push"
+        },
+        resize: true
+      },
+      modes: {
+        grab: {
+          distance: 400,
+          lineLinked: {
+            opacity: 1
+          }
+        },
+        bubble: {
+          distance: 400,
+          size: 100,
+          duration: 2,
+          opacity: 1,
+          speed: 2
+        },
+        repulse: {
+          distance: 200
+        },
+        push: {
+          particles_nb: 4
+        },
+        remove: {
+          particles_nb: 2
+        }
+      }
     },
-    shape: {
-      type: "circle",
+    backgroundMask: {
+      enable: true,
+      cover: {
+        color: {
+          value: {
+            r: 0,
+            g: 0,
+            b: 0
+          }
+        }
+      }
     },
-    size: {
-      value: { min: 1, max: 5 },
-    },
-  },
-  detectRetina: true,
-
+    retina_detect: true,
+    fps_limit: 60,
+    background: {
+      image: "url('https://particles.js.org/images/background3.jpg')"
+    }
 
 }
+const HomePageBoxLeft = styled(Box)`
+    display: block;
+    position: relative;
+    z-index: 5;
+    height: 100vh;
+    background-color: rgba(0,0,0, 0.5);
+`
 
+const HomePageBox = styled(Box)`
+  display: none;
+
+  @media (min-width: 900px) {
+    display: block;
+    position: relative;
+    z-index: 5;
+    height: 100vh;
+    background-color: rgba(0,0,0, 0.5);
+  }
+`
 
 // Hero Container
 const HeroContainer = styled(Box)`
@@ -139,17 +304,22 @@ const HeroTextBox = styled(Box)`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  /* align-items: center; */
+  text-align: center;
   position: relative;
   height: 100%;
   margin: 0 auto;
-  text-align: center;
   width: 100%;
   z-index: 5;
+  padding: 0 40px;
 
   @media (min-width: 840px) {
-    padding: 4em 2em;
-    width: 50%;
+    padding: 4px 0;
+    width: 80%;
+  }
+
+  @media (min-width: 1199px) {
+    text-align: left;
   }
 
   h1 {
@@ -171,11 +341,3 @@ const HeroTextBox = styled(Box)`
     color: #f9f7f7;
   }
 `
-
-
-
-let particlesStyles = {
-  position: 'absolute',
-  top: 0,
-  left: 0,
-}

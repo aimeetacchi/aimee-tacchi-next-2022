@@ -165,9 +165,9 @@ const MiniDrawer = () => {
                       open={Boolean(anchorElUser)}
                       onClose={handleCloseUserMenu}
                     >
-                      {['Settings', 'About', 'Home'].map((setting) => (
+                      {['Settings', 'About', 'Home'].map((setting, index) => (
                         <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                          <Typography textAlign="center">{setting}</Typography>
+                          <Link passHref href={index == 2 ? `/` : `/${setting}`.toLowerCase()}><Typography textAlign="center">{setting}</Typography></Link>
                         </MenuItem>
                       ))}
                     </Menu>
@@ -183,7 +183,7 @@ const MiniDrawer = () => {
                 <Divider />
                 <List>
                     {['Dashboard', 'About', 'Skills', 'Projects', 'Contact'].map((text, index) => (
-                        <Link key={text} href={index === 0 ? '/' : `/${text}`.toLowerCase()}>
+                        <Link key={text} href={`/${text}`.toLowerCase()}>
                             <a>
                                 {open ? (
                                     <MiniDrawerListItem open={open} text={text} />
