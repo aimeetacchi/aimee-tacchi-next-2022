@@ -1,6 +1,6 @@
 import { createTheme } from '@mui/material/styles';
 import { indigo, lightBlue } from '@mui/material/colors';
-const theme = createTheme({
+const lightTheme = createTheme({
   // breakpoints: {
   //   values: {
   //     xxs: 0, // small phone
@@ -39,7 +39,12 @@ const theme = createTheme({
 
     error: {
       main: '#FF0000'
-    }
+    },
+
+    background: {
+      default: "#b2bbe5",
+      paper: "#fefefe",
+    },
   },
   typography: {
     fontFamily: "'Lato', sans-serif",
@@ -87,4 +92,4 @@ const theme = createTheme({
   }
 })
 
-export default theme;
+export default lightTheme;
