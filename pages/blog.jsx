@@ -15,7 +15,7 @@ export default function Blog() {
 
       <Layout>
         <Box sx={{marginLeft: '89px' }}>
-            <Typography mb={2} variant="h2">Blog</Typography>
+            <Typography mt={2} mb={2} variant="h2">Blog</Typography>
             <Divider/>
             
         </Box>

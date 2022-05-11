@@ -15,7 +15,7 @@ export default function Contact() {
 
             <Layout>
                 <Box sx={{ marginLeft: '89px' }}>
-                    <Typography mb={2} variant="h2">Contact</Typography>
+                    <Typography mt={2} mb={2} variant="h2">Contact</Typography>
                     <Divider />
                     <Typography mt={2} variant="body1">You can find me on all of these socials. amet consectetur adipisicing elit. Omnis natus impedit quam praesentium officia vitae provident cum voluptas dicta maxime labore velit assumenda, fugiat corrupti eaque corporis officiis nam expedita?Lorem ipsum dolor sit, amet consectetur adipisicing elit. Omnis natus impedit quam praesentium officia vitae provident cum voluptas dicta maxime labore velit assumenda, fugiat corrupti eaque corporis officiis nam expedita?Lorem ipsum dolor sit, amet consectetur adipisicing elit. Omnis natus impedit quam praesentium officia vitae provident cum voluptas dicta maxime labore velit assumenda, fugiat corrupti eaque corporis officiis nam expedita?</Typography>
                 </Box>

@@ -21,16 +21,25 @@ export const darkTheme = {
             // paper: "#324599",
         },
         components: {
-            MuiPaper: {
+
+            MuiDrawer: {
                 styleOverrides: {
-                    root: {
-                        backgroundColor: "#19224c",
+                    paper: {
+                        backgroundColor: "black!important",
                     }
-                },
-                defaultProps: {
-                    elevation: 0
                 }
-            }
+            },
+
+            // MuiPaper: {
+            //     styleOverrides: {
+            //         root: {
+            //             backgroundColor: "#19224c",
+            //         }
+            //     },
+            //     defaultProps: {
+            //         elevation: 0
+            //     }
+            // },
         }
     },
     typography: {

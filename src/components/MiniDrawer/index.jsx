@@ -124,7 +124,7 @@ const MiniDrawer = () => {
   
 
     return (
-        <Box sx={{ display: 'flex' }}>
+        <Box sx={{ height: 64, display: 'flex' }}>
             <CssBaseline />
             <AppBar position="fixed" open={open}>
                 <Toolbar>

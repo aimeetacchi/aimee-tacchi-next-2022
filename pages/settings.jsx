@@ -1,22 +1,14 @@
+import { useContext } from 'react';
 import Head from 'next/head';
+import { useTheme } from '@mui/material/styles';
+import { Box, Button, Divider, Paper, Typography } from '@mui/material';
 
 import Layout from '../src/components/Layout';
-import { Box, Button, Divider, Paper, Typography } from '@mui/material';
-import { darkTheme } from '../src/theme/darkTheme';
-import lightTheme from '../src/theme';
-import { createTheme } from '@mui/material/styles';
+import { ColorModeContext } from './_app';
 
-export default function Settings({setTheme, darkMode, setDarkMode}) {
-
-  const setDarkTheme = () => {
-    setTheme(createTheme(darkTheme))
-    setDarkMode(true);
-  }
-
-  const setLightTheme = () => {
-    setTheme(lightTheme)
-    setDarkMode(false);
-  }
+export default function Settings() {
+  const theme = useTheme();
+  const colorMode = useContext(ColorModeContext);
 
   return (
     <>
@@ -27,15 +19,13 @@ export default function Settings({setTheme, darkMode, setDarkMode}) {
       </Head>
 
       <Layout>
-        <Paper>
+        <Paper sx={{height: '100vh'}}>
         <Box sx={{marginLeft: '89px' }}>
-            <Typography mb={2} variant="h2">Settings</Typography>
+            <Typography mt={2} mb={2} variant="h2">Settings</Typography>
             <Divider/>
-            {darkMode ? (
-              <Button onClick={() => setLightTheme()}>Light Mode</Button>
-            ) : (
-            <Button onClick={() => setDarkTheme()}>Dark Mode</Button>
-            )}
+           
+            <Button onClick={colorMode.toggleColorMode}> {theme.palette.mode === 'dark' ? 'Light Mode' : 'Dark Mode'}</Button>
+
         </Box>
         </Paper>
       </Layout>

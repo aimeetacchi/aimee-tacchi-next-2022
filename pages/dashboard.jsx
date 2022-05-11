@@ -20,7 +20,7 @@ export default function Home({ allProjects }) {
 
       <Layout>
         <Box sx={{ marginLeft: '89px' }}>
-        <Typography mb={2} variant="h2">Recent Work</Typography>
+        <Typography mt={2} mb={2} variant="h2">Recent Work</Typography>
         <Divider />
         <Box mt={2} sx={{ display: 'flex', gap: 3, flexWrap: 'wrap'}}>
           {recentWork.map(project => (

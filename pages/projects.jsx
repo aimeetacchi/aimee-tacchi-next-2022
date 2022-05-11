@@ -19,7 +19,7 @@ export default function Projects({ allProjects }) {
 
             <Layout>
                 <Box sx={{ marginLeft: '89px' }}>
-                    <Typography mb={2} variant="h2">Projects</Typography>
+                    <Typography mt={2} mb={2} variant="h2">Projects</Typography>
                     <Divider />
                 </Box>
                 <Box mt={4} sx={{ display: 'flex', gap: 3, flexWrap: 'wrap', marginLeft: '89px' }}>

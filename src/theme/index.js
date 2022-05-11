@@ -1,50 +1,38 @@
-import { createTheme } from '@mui/material/styles';
-import { indigo, lightBlue } from '@mui/material/colors';
-const lightTheme = createTheme({
-  // breakpoints: {
-  //   values: {
-  //     xxs: 0, // small phone
-  //     xs: 300, // phone
-  //     sm: 600, // tablets
-  //     md: 900, // small laptop
-  //     lg: 1200, // desktop
-  //     xl: 1536 // large screens
-  //   }
-  // },
-  // colors: {
-  //     navy: '#072a52;',
-  //     darkblue: '#1a475e',
-  //     blue: '#208ec7',
-  //     purple: '#4956ba',
-  //     lightpurple: '#9ba2ff',
-  //     darkpurple: '#414073',
-  //     black: '#0a1128',
-  // },
 
+import { indigo, lightBlue, grey } from '@mui/material/colors';
+
+const getDesignTokens = (mode) => ({
   palette: {
-    // mode: 'dark',
-    primary: {
-      light: '#6376c7',
-      main: '#3D54BA',
-      dark: '#2a3a82',
-      contrastText: '#E5E5E5',
-    },
-    secondary: {
-      light: '#726b77',
-      main: '#4F4756',
-      dark: '#37313c',
-      contrastText: '#E5E5E5',
-
-    },
-
-    error: {
-      main: '#FF0000'
-    },
-
-    background: {
-      default: "#b2bbe5",
-      paper: "#fefefe",
-    },
+    ...(mode === 'light' ? {
+      // palette values for light mode
+      primary: {
+        main: '#208ec7',
+      },
+      divider: indigo[300],
+      background: {
+        default: grey[100],
+        paper: grey[200],
+      },
+      text: {
+        primary: grey[900],
+        secondary: grey[800],
+      },
+    }
+      : {
+        // palette values for dark mode
+        primary: {
+          main: '#1a475e',
+        },
+        divider: '#1a475e',
+        background: {
+          default: '#208ec7',
+          paper: '#208ec7',
+        },
+        text: {
+          primary: '#fff',
+          secondary: grey[500],
+        },
+      })
   },
   typography: {
     fontFamily: "'Lato', sans-serif",
@@ -92,4 +80,26 @@ const lightTheme = createTheme({
   }
 })
 
-export default lightTheme;
+export default getDesignTokens;
+
+
+
+  // breakpoints: {
+  //   values: {
+  //     xxs: 0, // small phone
+  //     xs: 300, // phone
+  //     sm: 600, // tablets
+  //     md: 900, // small laptop
+  //     lg: 1200, // desktop
+  //     xl: 1536 // large screens
+  //   }
+  // },
+  // colors: {
+  //     navy: '#072a52;',
+  //     darkblue: '#1a475e',
+  //     blue: '#208ec7',
+  //     purple: '#4956ba',
+  //     lightpurple: '#9ba2ff',
+  //     darkpurple: '#414073',
+  //     black: '#0a1128',
+  // },
