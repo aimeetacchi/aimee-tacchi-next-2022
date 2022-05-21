@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 import { Button } from "@mui/material";
 
-
 export const ButtonTheme = styled(Button)`
     margin-top: 20px; 
     color: ${props => props.mode === 'dark' ? "white" : "white"};

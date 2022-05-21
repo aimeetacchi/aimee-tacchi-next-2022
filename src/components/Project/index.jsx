@@ -1,12 +1,13 @@
 import React from 'react';
 import { Image } from 'react-datocms';
 
-import { Card, CardActionArea, CardContent, Divider, Typography } from '@mui/material';
+import { CardActionArea, CardContent, Divider, Typography } from '@mui/material';
+import { ProjectCard } from './styles';
 
 const Project = ({ project }) => {
     const { name, description, tech, link, coverImage } = project;
     return (
-        <Card sx={{ width: '30%' }}>
+        <ProjectCard>
             <CardActionArea>
                 <Image data={coverImage.responsiveImage} alt={coverImage.alt} />
                 <CardContent>
@@ -23,7 +24,7 @@ const Project = ({ project }) => {
                     <a href={link}>View Project</a>
                 </CardContent>
             </CardActionArea>
-        </Card>
+        </ProjectCard>
     );
 };
 export default Project;
