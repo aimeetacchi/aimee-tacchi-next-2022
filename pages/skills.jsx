@@ -1,7 +1,7 @@
 import Head from 'next/head';
 
 import Layout from '../src/components/Layout';
-import { Box, Divider, Typography } from '@mui/material';
+import { Box, Divider, Paper, Typography } from '@mui/material';
 
 export default function Skills() {
 
@@ -14,15 +14,17 @@ export default function Skills() {
             </Head>
 
             <Layout>
-                <Box sx={{ marginLeft: '89px' }}>
-                    <Typography mb={2} variant="h2">Skills</Typography>
-                    <Divider />
-                    <Typography mt={2} variant="body1">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Omnis natus impedit quam praesentium officia vitae provident cum voluptas dicta maxime labore velit assumenda, fugiat corrupti eaque corporis officiis nam expedita?Lorem ipsum dolor sit, amet consectetur adipisicing elit. Omnis natus impedit quam praesentium officia vitae provident cum voluptas dicta maxime labore velit assumenda, fugiat corrupti eaque corporis officiis nam expedita?Lorem ipsum dolor sit, amet consectetur adipisicing elit. Omnis natus impedit quam praesentium officia vitae provident cum voluptas dicta maxime labore velit assumenda, fugiat corrupti eaque corporis officiis nam expedita?</Typography>
+                <Paper sx={{height: '100vh'}}>
+                    <Box sx={{ marginLeft: '89px' }}>
+                        <Typography mb={2} variant="h2">Skills</Typography>
+                        <Divider />
+                        <Typography mt={2} variant="body1">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Omnis natus impedit quam praesentium officia vitae provident cum voluptas dicta maxime labore velit assumenda, fugiat corrupti eaque corporis officiis nam expedita?Lorem ipsum dolor sit, amet consectetur adipisicing elit. Omnis natus impedit quam praesentium officia vitae provident cum voluptas dicta maxime labore velit assumenda, fugiat corrupti eaque corporis officiis nam expedita?Lorem ipsum dolor sit, amet consectetur adipisicing elit. Omnis natus impedit quam praesentium officia vitae provident cum voluptas dicta maxime labore velit assumenda, fugiat corrupti eaque corporis officiis nam expedita?</Typography>
 
-                    <Typography mt={2} variant="body1">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Omnis natus impedit quam praesentium officia vitae provident cum voluptas dicta maxime labore velit assumenda, fugiat corrupti eaque corporis officiis nam expedita?Lorem ipsum dolor sit, amet consectetur adipisicing elit. Omnis natus impedit quam praesentium officia vitae provident cum voluptas dicta maxime labore velit assumenda, fugiat corrupti eaque corporis officiis nam expedita?Lorem ipsum dolor sit, amet consectetur adipisicing elit. Omnis natus impedit quam praesentium officia vitae provident cum voluptas dicta maxime labore velit assumenda, fugiat corrupti eaque corporis officiis nam expedita?</Typography>
+                        <Typography mt={2} variant="body1">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Omnis natus impedit quam praesentium officia vitae provident cum voluptas dicta maxime labore velit assumenda, fugiat corrupti eaque corporis officiis nam expedita?Lorem ipsum dolor sit, amet consectetur adipisicing elit. Omnis natus impedit quam praesentium officia vitae provident cum voluptas dicta maxime labore velit assumenda, fugiat corrupti eaque corporis officiis nam expedita?Lorem ipsum dolor sit, amet consectetur adipisicing elit. Omnis natus impedit quam praesentium officia vitae provident cum voluptas dicta maxime labore velit assumenda, fugiat corrupti eaque corporis officiis nam expedita?</Typography>
 
-                    <Typography mt={2} variant="body1">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Omnis natus impedit quam praesentium officia vitae provident cum voluptas dicta maxime labore velit assumenda, fugiat corrupti eaque corporis officiis nam expedita?Lorem ipsum dolor sit, amet consectetur adipisicing elit. Omnis natus impedit quam praesentium officia vitae provident cum voluptas dicta maxime labore velit assumenda, fugiat corrupti eaque corporis officiis nam expedita?Lorem ipsum dolor sit, amet consectetur adipisicing elit. Omnis natus impedit quam praesentium officia vitae provident cum voluptas dicta maxime labore velit assumenda, fugiat corrupti eaque corporis officiis nam expedita?</Typography>
-                </Box>
+                        <Typography mt={2} variant="body1">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Omnis natus impedit quam praesentium officia vitae provident cum voluptas dicta maxime labore velit assumenda, fugiat corrupti eaque corporis officiis nam expedita?Lorem ipsum dolor sit, amet consectetur adipisicing elit. Omnis natus impedit quam praesentium officia vitae provident cum voluptas dicta maxime labore velit assumenda, fugiat corrupti eaque corporis officiis nam expedita?Lorem ipsum dolor sit, amet consectetur adipisicing elit. Omnis natus impedit quam praesentium officia vitae provident cum voluptas dicta maxime labore velit assumenda, fugiat corrupti eaque corporis officiis nam expedita?</Typography>
+                    </Box>
+                </Paper>
             </Layout>
         </>
     );

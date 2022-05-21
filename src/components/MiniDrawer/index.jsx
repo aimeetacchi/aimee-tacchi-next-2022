@@ -42,6 +42,7 @@ const drawerWidth = 240;
 
 const openedMixin = theme => ({
     width: drawerWidth,
+    borderRight: 'none',
     transition: theme.transitions.create('width', {
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.enteringScreen,
@@ -50,6 +51,7 @@ const openedMixin = theme => ({
 });
 
 const closedMixin = theme => ({
+    borderRight: 'none',
     transition: theme.transitions.create('width', {
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.leavingScreen,
@@ -91,6 +93,16 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: prop => prop !== 'open' })
     flexShrink: 0,
     whiteSpace: 'nowrap',
     boxSizing: 'border-box',
+
+    hr: {
+        borderColor: 'transparent',
+    },
+    svg: {
+        fill: 'white'
+    },
+    a: {
+        color: 'white'
+    },
     ...(open && {
         ...openedMixin(theme),
         '& .MuiDrawer-paper': openedMixin(theme),
@@ -146,7 +158,7 @@ const MiniDrawer = () => {
                     </Typography>
                     <Tooltip title="Open settings" arrow>
                       <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                        <Avatar sx={{ marginLeft: '10px' }} alt="Aimee Tacchi" src="/static/images/avatar/2.jpg" />
+                        <Avatar sx={{ marginLeft: '10px' }} alt="Aimee Tacchi" src="/images/avatar.jpg" />
                       </IconButton>
                     </Tooltip>
                     <Menu

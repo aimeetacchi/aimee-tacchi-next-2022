@@ -4,7 +4,7 @@ import { gql } from 'graphql-request';
 import graphQLClient from '../graphql-client';
 
 import Layout from '../src/components/Layout';
-import { Box, Divider, Typography } from '@mui/material';
+import { Box, Divider, Paper, Typography } from '@mui/material';
 import Project from '../src/components/Project';
 
 export default function Home({ allProjects }) {
@@ -19,6 +19,7 @@ export default function Home({ allProjects }) {
       </Head>
 
       <Layout>
+      <Paper sx={{height: '100vh'}}>
         <Box sx={{ marginLeft: '89px' }}>
         <Typography mt={2} mb={2} variant="h2">Recent Work</Typography>
         <Divider />
@@ -28,6 +29,7 @@ export default function Home({ allProjects }) {
           ))}
         </Box>
         </Box>
+      </Paper>
       </Layout>
     </>
   );

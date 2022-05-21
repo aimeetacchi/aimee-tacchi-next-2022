@@ -1,7 +1,7 @@
 import Head from 'next/head';
 
 import Layout from '../src/components/Layout';
-import { Box, Divider, Typography } from '@mui/material';
+import { Box, Divider, Paper, Typography } from '@mui/material';
 
 export default function Blog() {
 
@@ -14,11 +14,13 @@ export default function Blog() {
       </Head>
 
       <Layout>
-        <Box sx={{marginLeft: '89px' }}>
-            <Typography mt={2} mb={2} variant="h2">Blog</Typography>
-            <Divider/>
-            
-        </Box>
+        <Paper sx={{height: '100vh'}}>
+          <Box sx={{marginLeft: '89px' }}>
+              <Typography mt={2} mb={2} variant="h2">Blog</Typography>
+              <Divider/>
+              
+          </Box>
+        </Paper>
       </Layout>
     </>
   );

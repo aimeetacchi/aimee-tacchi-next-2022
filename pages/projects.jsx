@@ -4,7 +4,7 @@ import { gql } from 'graphql-request';
 import graphQLClient from '../graphql-client';
 
 import Layout from '../src/components/Layout';
-import { Box, Divider, Typography } from '@mui/material';
+import { Box, Divider, Paper, Typography } from '@mui/material';
 import Project from '../src/components/Project';
 
 export default function Projects({ allProjects }) {
@@ -18,15 +18,17 @@ export default function Projects({ allProjects }) {
             </Head>
 
             <Layout>
-                <Box sx={{ marginLeft: '89px' }}>
-                    <Typography mt={2} mb={2} variant="h2">Projects</Typography>
-                    <Divider />
-                </Box>
-                <Box mt={4} sx={{ display: 'flex', gap: 3, flexWrap: 'wrap', marginLeft: '89px' }}>
-                    {allProjects.map(project => (
-                        <Project key={project.id} project={project} />
-                    ))}
-                </Box>
+                <Paper sx={{height: '100vh'}}>
+                    <Box sx={{ marginLeft: '89px' }}>
+                        <Typography mt={2} mb={2} variant="h2">Projects</Typography>
+                        <Divider />
+                    </Box>
+                    <Box mt={4} sx={{ display: 'flex', gap: 3, flexWrap: 'wrap', marginLeft: '89px' }}>
+                        {allProjects.map(project => (
+                            <Project key={project.id} project={project} />
+                        ))}
+                    </Box>
+                </Paper>
             </Layout>
         </>
     );

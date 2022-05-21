@@ -1,7 +1,8 @@
 import Head from 'next/head';
 
 import Layout from '../src/components/Layout';
-import { Box, Divider, Typography } from '@mui/material';
+import { Box, Divider, Paper, Typography } from '@mui/material';
+import MyGallery from '../src/components/Gallery';
 
 export default function Gallery() {
 
@@ -14,11 +15,14 @@ export default function Gallery() {
             </Head>
 
             <Layout>
-                <Box sx={{ marginLeft: '89px' }}>
-                    <Typography mt={2} mb={2} variant="h2">Gallery</Typography>
-                    <Divider />
-                    <Typography mt={2} variant="body1">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Omnis natus impedit quam praesentium officia vitae provident cum voluptas dicta maxime labore velit assumenda, fugiat corrupti eaque corporis officiis nam expedita?Lorem ipsum dolor sit, amet consectetur adipisicing elit. Omnis natus impedit quam praesentium officia vitae provident cum voluptas dicta maxime labore velit assumenda, fugiat corrupti eaque corporis officiis nam expedita?Lorem ipsum dolor sit, amet consectetur adipisicing elit. Omnis natus impedit quam praesentium officia vitae provident cum voluptas dicta maxime labore velit assumenda, fugiat corrupti eaque corporis officiis nam expedita?</Typography>
-                </Box>
+                <Paper>
+                    <Box sx={{ marginLeft: '89px' }}>
+                        <Typography mt={2} mb={2} variant="h2">Gallery</Typography>
+                        <Divider />
+                        <Typography mt={2} variant="body1">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Omnis natus impedit quam praesentium officia vitae provident cum voluptas dicta maxime labore velit assumenda.</Typography>
+                        <MyGallery/>
+                    </Box>
+                </Paper>
             </Layout>
         </>
     );

@@ -1,13 +1,16 @@
 import { useContext } from 'react';
 import Head from 'next/head';
-import { useTheme } from '@mui/material/styles';
-import { Box, Button, Divider, Paper, Typography } from '@mui/material';
+
+import { Box, Divider, Paper, Typography } from '@mui/material';
+import DarkModeIcon from '@mui/icons-material/DarkMode';
+import LightModeIcon from '@mui/icons-material/LightMode';
 
 import Layout from '../src/components/Layout';
-import { ColorModeContext } from './_app';
 
-export default function Settings() {
-  const theme = useTheme();
+import { ColorModeContext } from './_app';
+import { ButtonTheme } from './styles';
+
+export default function Settings({mode}) {
   const colorMode = useContext(ColorModeContext);
 
   return (
@@ -23,8 +26,19 @@ export default function Settings() {
         <Box sx={{marginLeft: '89px' }}>
             <Typography mt={2} mb={2} variant="h2">Settings</Typography>
             <Divider/>
-           
-            <Button onClick={colorMode.toggleColorMode}> {theme.palette.mode === 'dark' ? 'Light Mode' : 'Dark Mode'}</Button>
+            <Typography mt={2} mb={2} variant="body1">Change your theme here</Typography>
+            <ButtonTheme mode={mode} onClick={colorMode.toggleColorMode}>
+              {mode === 'dark' ? (
+              <>
+                <LightModeIcon/>
+                Light Mode
+              </>
+              ) : (
+              <>
+                <DarkModeIcon/>
+                Dark Mode
+              </>)}
+            </ButtonTheme>
 
         </Box>
         </Paper>

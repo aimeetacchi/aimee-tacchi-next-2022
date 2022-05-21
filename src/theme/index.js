@@ -6,7 +6,7 @@ const getDesignTokens = (mode) => ({
     ...(mode === 'light' ? {
       // palette values for light mode
       primary: {
-        main: '#208ec7',
+        main: '#3D54BA',
       },
       divider: indigo[300],
       background: {
@@ -14,33 +14,57 @@ const getDesignTokens = (mode) => ({
         paper: grey[200],
       },
       text: {
-        primary: grey[900],
-        secondary: grey[800],
+        primary: '#000',
+        secondary: '#000',
       },
     }
       : {
         // palette values for dark mode
         primary: {
-          main: '#1a475e',
+          main: '#273676',
         },
-        divider: '#1a475e',
+        divider: '#E5E5E5',
         background: {
-          default: '#208ec7',
-          paper: '#208ec7',
+          default: '#4F4756',
+          paper: '#353E64',
         },
         text: {
           primary: '#fff',
-          secondary: grey[500],
+          secondary: '#efefef',
         },
       })
   },
+  components: {
+    ...(mode === 'light' ? {
+      MuiDrawer: {
+        styleOverrides: {
+          paper: {
+            backgroundColor: "#87808E",
+            color: "white",
+          },
+        }
+      }
+    }
+      : {
+        MuiDrawer: {
+          styleOverrides: {
+            paper: {
+              backgroundColor: "#4F4756",
+              color: "white",
+            },
+          }
+        }
+      })
+  },
   typography: {
+    color: { ...(mode === 'light' ? '#FFFFFF' : '#000000') },
     fontFamily: "'Lato', sans-serif",
     fontSize: 16,
     fontWeightLight: 300,
     fontWeightRegular: 400,
     fontWeightBold: 700,
     lineHeight: 1.5,
+
     h1: {
       fontFamily: "'Source Code Pro', monospace",
       fontSize: 36,
@@ -48,6 +72,8 @@ const getDesignTokens = (mode) => ({
     h2: {
       fontFamily: "'Source Code Pro', monospace",
       fontSize: 24,
+      paddingTop: 24,
+      marginTop: '0px!important',
     },
     h3: {
       fontFamily: "'Source Code Pro', monospace",

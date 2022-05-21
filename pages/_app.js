@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import Head from 'next/head';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -15,19 +15,41 @@ export const ColorModeContext = React.createContext({ toggleColorMode: () => { }
 export default function MyApp(props) {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
 
+  const [mode, setMode] = useState('light');
+  const [checked, setChecked] = useState(false)
 
-  const [mode, setMode] = React.useState('light');
-  const colorMode = React.useMemo(
+  const colorMode = useMemo(
     () => ({
       toggleColorMode: () => {
+        setChecked((prevChecked) => (prevChecked === false ? true : false));
         setMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'));
+        // Dark mode will only be in local storage if Checked is True, if there is darkmode set then Remove it.
+        localStorage.getItem('darkMode') && localStorage.removeItem('darkMode')
       },
     }),
     [],
   );
 
-  const theme = React.useMemo(() => createTheme(getDesignTokens(mode)), [mode]);
+  const theme = useMemo(
+    () => createTheme(getDesignTokens(mode)), [mode]
+  );
 
+  useEffect(() => {
+    const darkMode = localStorage.getItem('darkMode')
+
+    if (darkMode) {
+      setChecked(true)
+      setMode('dark');
+    }
+
+    if (checked) {
+      localStorage.setItem('darkMode', JSON.stringify(checked))
+      setMode('dark');
+    } else {
+      localStorage.removeItem('darkMode')
+      setMode('light');
+    }
+  }, [mode, checked])
 
 
   return (
@@ -40,7 +62,7 @@ export default function MyApp(props) {
         <ThemeProvider theme={theme}>
           {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
           <CssBaseline />
-          <Component {...pageProps} />
+          <Component mode={mode} colorMode={colorMode} {...pageProps} />
         </ThemeProvider>
       </ColorModeContext.Provider>
     </CacheProvider>
