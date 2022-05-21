@@ -1,14 +1,22 @@
 import { useContext } from 'react';
 import Head from 'next/head';
-
-import { Box, Divider, Paper, Typography } from '@mui/material';
+import styled from 'styled-components'
+import { Button, Box, Divider, Paper, Typography } from '@mui/material';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import LightModeIcon from '@mui/icons-material/LightMode';
-
 import Layout from '../src/components/Layout';
-
 import { ColorModeContext } from './_app';
-import { ButtonTheme } from './styles';
+
+
+const ButtonTheme = styled(Button)`
+  margin-top: 20px; 
+  color: ${props => props.mode === 'dark' ? "white" : "white"};
+  background-color: ${props => props.mode === 'dark' ? "#3D54BA" : "#273676"};
+
+  &:hover {
+      background-color: ${props => props.mode === 'dark' ? "#4F67D0" : "#384998"};
+  }
+`
 
 export default function Settings({mode}) {
   const colorMode = useContext(ColorModeContext);
