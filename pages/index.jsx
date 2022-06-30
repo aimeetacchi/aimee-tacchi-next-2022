@@ -8,7 +8,6 @@ import HomeImage from '../src/components/HomeImage'
 import { Box, Typography, Button, Grid } from '@mui/material';
 import theme from '../src/theme';
 
-
 export default function Home() {
   const particlesInit = async (main) => {
     console.log(main);

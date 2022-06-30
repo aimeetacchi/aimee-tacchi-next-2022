@@ -7,9 +7,17 @@ import Layout from '../src/components/Layout';
 import { Box, Divider, Paper, Typography } from '@mui/material';
 import Project from '../src/components/Project';
 
-export default function Home({ allProjects }) {
-  console.log('All Projects', allProjects);
-  const recentWork = allProjects.filter(project => project.recentWork);
+import { ApolloClient, createHttpLink, InMemoryCache } from "@apollo/client";
+import { setContext } from '@apollo/client/link/context';
+import { github } from '../src/useGitHubQuery';
+import Repo from '../src/components/Repo';
+
+export default function Home({allProjects, pinnedItems}) {
+
+  console.log('Pinned Repos', pinnedItems);
+  console.log('All Projects', allProjects.allProjects);
+  const recentWork = allProjects.allProjects.filter(project => project.recentWork);
+ 
   return (
     <>
       <Head>
@@ -19,10 +27,19 @@ export default function Home({ allProjects }) {
       </Head>
 
       <Layout>
-      <Paper sx={{height: '100vh'}}>
+      <Paper sx={{height: '100%'}}>
         <Box sx={{ marginLeft: '89px' }}>
-        <Typography mt={2} mb={2} variant="h2">Recent Work</Typography>
+        <Typography mt={2} mb={2} variant="h2">Pinned Repos</Typography>
         <Divider />
+        <Box mt={2} mb={2} sx={{ display: 'flex', gap: 3, flexWrap: 'wrap'}}>
+
+          {pinnedItems.map(repo => (
+            <Repo key={repo.id} repo={repo} />
+          ))}
+        </Box>
+
+        <Divider/>
+        <Typography mt={2} mb={2} variant="h2">Recent Work</Typography>
         <Box mt={2} sx={{ display: 'flex', gap: 3, flexWrap: 'wrap'}}>
           {recentWork.map(project => (
             <Project key={project.id} project={project} />
@@ -69,7 +86,31 @@ export async function getServerSideProps() {
 
   const allProjects = await graphQLClient.request(query);
 
+  const httpLink = createHttpLink({
+    uri: 'https://api.github.com/graphql',
+  });
+  
+  const authLink = setContext((_, { headers }) => {
+    return {
+      headers: {
+        ...headers,
+        authorization: `Bearer ${process.env.GITHUB_ACCESS_TOKEN}`,
+      }
+    }
+  });
+  
+  const client = new ApolloClient({
+    link: authLink.concat(httpLink),
+    cache: new InMemoryCache()
+  });
+
+  const { loading, error, data} = await client.query({query: github});
+  const { user } = data;
+  const pinnedItems = user.pinnedItems.edges.map(edge => edge.node);
+
   return {
-    props: allProjects,
+    props: { allProjects, pinnedItems }
   };
 }
+
+
