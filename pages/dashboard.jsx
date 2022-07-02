@@ -12,6 +12,19 @@ import { setContext } from '@apollo/client/link/context';
 import { github } from '../src/useGitHubQuery';
 import Repo from '../src/components/Repo';
 
+
+import { Card } from '@mui/material';
+import styled from "styled-components";
+
+export const DashboardBox = styled(Box)`
+   
+    @media (min-width: 350px) {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+`
+
 export default function Home({allProjects, pinnedItems}) {
 
   console.log('Pinned Repos', pinnedItems);
@@ -27,24 +40,24 @@ export default function Home({allProjects, pinnedItems}) {
       </Head>
 
       <Layout>
-      <Paper sx={{height: '100%'}}>
+      <Paper>
         <Box sx={{ marginLeft: '89px' }}>
         <Typography mt={2} mb={2} variant="h2">Pinned Repos</Typography>
         <Divider />
-        <Box mt={2} mb={2} sx={{ display: 'flex', gap: 3, flexWrap: 'wrap'}}>
+        <DashboardBox mt={2} mb={2}>
 
           {pinnedItems.map(repo => (
             <Repo key={repo.id} repo={repo} />
           ))}
-        </Box>
+        </DashboardBox>
 
         <Divider/>
         <Typography mt={2} mb={2} variant="h2">Recent Work</Typography>
-        <Box mt={2} sx={{ display: 'flex', gap: 3, flexWrap: 'wrap'}}>
+        <DashboardBox mt={2}>
           {recentWork.map(project => (
             <Project key={project.id} project={project} />
           ))}
-        </Box>
+        </DashboardBox>
         </Box>
       </Paper>
       </Layout>

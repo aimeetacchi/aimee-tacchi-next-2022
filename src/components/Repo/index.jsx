@@ -9,17 +9,17 @@ const Repo = ({ repo }) => {
         <RepoCard>
             <CardActionArea>
                 <CardContent>
-                    <Typography  gutterBottom variant="h3" component="div">
+                    <Typography className="repo__name" gutterBottom variant="h3" component="div">
                         {name}
                     </Typography>
                     <Typography mb={2} variant="body1" color="text.primary">
                         Description: {description}
                     </Typography>
                     <Divider/>
-                    <Typography mt={2} variant="body1" color="text.primary">
+                    <Typography mt={2} mb={2} variant="body1" color="text.primary">
                         Created At: {createdAt}
                     </Typography>
-                    <a href={url} target="_blank" rel="noreferrer" >View Repo</a>
+                    <a href={url} className="repo__link" target="_blank" rel="noreferrer" >View Repo</a>
                 </CardContent>
             </CardActionArea>
         </RepoCard>

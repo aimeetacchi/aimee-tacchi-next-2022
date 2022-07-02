@@ -1,7 +1,7 @@
 import React from 'react'
-import styled from 'styled-components'
 import Header from '../Header'
 import MiniDrawer from '../MiniDrawer'
+import { FooterStyle } from './styles'
 
 const Layout = ({ children }) => {
     return (
@@ -18,12 +18,5 @@ const Layout = ({ children }) => {
         </>
     )
 }
-
-// Footer Styles ===
-const FooterStyle = styled.footer`
-  font-size: 1.5rem;
-  padding: 5em 0;
-  text-align: center;
-`
 
 export default Layout
